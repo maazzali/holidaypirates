@@ -62,3 +62,6 @@ typings/
 
 # vscode plugins
 .history
+
+# webstorm
+.idea
