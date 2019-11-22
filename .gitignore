@@ -65,3 +65,5 @@ typings/
 
 # webstorm
 .idea
+
+.DS_Store
