@@ -1,1 +1,3 @@
-console.log('welcome on board!')
+import '../styles/index.scss'
+
+

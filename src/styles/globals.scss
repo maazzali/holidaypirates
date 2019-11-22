@@ -1,0 +1,104 @@
+@import "colors";
+
+// Base colors
+$body-bg-color: $white-20;
+$dark-border-color: $grey-20;
+
+// Topbar
+$topbar-height: 61px;
+$topbar-bg-color: $white-20;
+
+// Sidebar
+$min-supported-display-height: 705px;
+$sidebar-width-expanded: 200px;
+// $sidebar-bg-color: ;
+
+// Header
+$header-height: 95px;
+$header-vertical-padding: 32px;
+$header-horizontal-padding: 29px;
+$header-padding: $header-vertical-padding $header-horizontal-padding;
+
+// Text colors
+$very-dark-text-color: $grey-80;
+$dark-text-color: $grey-70;
+$medium-text-color: $grey-50;
+$light-text-color: $grey-30;
+$very-light-text-color: $grey-20;
+
+// Font settings
+$base-font-size: 18px;
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-bold: 600;
+
+// Buttons spacing
+$buttons-default-spacing: 16px;
+
+// Layout settings
+$main-content-horz-padding: 29px;
+
+@font-face {
+  font-family: Bariol Bold;
+  src: url(fonts/bariol_bold-webfont.woff2);
+}
+@font-face {
+  font-family: Bariol Regular;
+  src: url(fonts/bariol_regular-webfont.woff2);
+}
+
+@mixin truncate-text-overflow {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@mixin text-unselectable {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@mixin graph-item-highlight-transition($property) {
+  transition: #{$property} 300ms ease;
+}
+
+$mobile-max-width: "max-width : 600px";
+$tablet-max-width: "max-width : 1400px";
+$desktop-min-width: "min-width : 1401px";
+
+@mixin desktop {
+  @media only screen and (#{$desktop-min-width}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media only screen and (#{$tablet-max-width}) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media only screen and (#{$mobile-max-width}) {
+    @content;
+  }
+}
+
+@mixin tablet-desktop {
+  @media only screen and (#{$tablet-max-width}), only screen and (#{$desktop-min-width}) {
+    @content;
+  }
+}
+
+@mixin icon-size($size) {
+  width: $size;
+  height: $size;
+
+  svg {
+    max-width: $size;
+    max-height: $size;
+    min-width: $size;
+  }
+}
