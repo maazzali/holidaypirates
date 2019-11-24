@@ -11,11 +11,7 @@
           <h1 class="hotel-card__name"><a class="hotel-card__name--link">{{name}}</a></h1>
           <div class="hotel-card__stars-container">
             <ul class="hotel-card__stars">
-              {{#each stars}}
-                <li class="hotel-card__star">
-                  <i class="material-icons">star</i>
-                </li>
-              {{/each}}
+              {{[../helpers/getStars] stars}}
             </ul>
             <span class="hotel-text">Hotel</span>
           </div>
@@ -23,14 +19,14 @@
         <div class="hotel-card__location-container">
           <div class="hotel-card__location">
             <i class="material-icons">location_on</i>
-            <p class="location-text">{{location}}</p>
+            <p class="location-text">{{[../helpers/getLocation] city country}}</p>
           </div>
           <span class="location__arrow-down"><i class="material-icons">keyboard_arrow_down</i></span>
         </div>
         <div class="hotel-card__reviews-container">
           <div class="hotel-card__reviews">
             <div class="hotel-card__rating-box">
-              <div class="hotel-card__rating">{{rating}}</div>
+              <div class="hotel-card__rating">{{[../helpers/getFixedNumber] rating}}</div>
             </div>
             <p class="hotel-card__rating-text">Very Good</p>
             <a href="#" class="hotel-card__reviews-text">See all Reviews</a>
@@ -42,11 +38,12 @@
         <div class="hotel-card__price">
           <h1>$ {{price}}</h1>
         </div>
-        <button class="view-details__button">
+        <button id="view-details" class="view-details__button">
           View Details
           <i class="material-icons">keyboard_arrow_down</i>
         </button>
       </div>
     </div>
   </article>
+  {{> details this}}
 {{/each}}
