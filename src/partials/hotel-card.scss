@@ -1,0 +1,175 @@
+.hotel-card {
+  margin-bottom: 15px;
+}
+
+.hotel-card__wrapper {
+  background-color: $white;
+  border-radius: 5px;
+  border: 1px solid #ededed;
+  box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.1);
+  display: flex;
+  position: relative;
+  width: 100%;
+}
+
+.hotel-card__image {
+  text-align: center;
+  width: 30%;
+}
+
+.hotel-image {
+  max-width: 100%;
+  max-height: 100%;
+
+  img {
+    width: 100%;
+  }
+}
+
+.hotel-card__detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  padding: 10px 20px;
+  position: relative;
+  width: 60%;
+
+  .hotel-card__name-container {
+    padding: 5px 0;
+    border-bottom: 1px solid $grey-20;
+  }
+
+  .hotel-card__name {
+    color: $primary-color;
+    cursor: pointer;
+    padding: 5px 0;
+
+    .hotel-card__name--link {
+      transition: all 0.3s ease-in-out;
+    }
+  }
+
+  .hotel-card__stars-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .hotel-card__stars {
+    display: flex;
+
+    .hotel-card__star {
+      width: 20px;
+      color: gold;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  .hotel-text {
+    margin-left: 10px;
+  }
+}
+
+.hotel-card__location-container {
+  align-items: center;
+  border-bottom: 1px solid $grey-20;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 5px;
+
+  &:hover {
+    background-color: $grey-10;
+  }
+}
+
+.hotel-card__location {
+  align-items: center;
+  display: flex;
+
+  .location-text {
+    margin-left: 10px;
+  }
+}
+
+.hotel-card__reviews-container {
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+  justify-content: space-between;
+  padding: 10px 5px;
+
+  &:hover {
+    background-color: $grey-10;
+  }
+}
+
+.hotel-card__rating-box {
+  background-color: $green-50;
+  border-radius: 5px;
+  display: inline-block;
+
+  .hotel-card__rating {
+    color: $white;
+    padding: 5px 10px;
+  }
+}
+
+.hotel-card__reviews {
+  align-items: center;
+  display: flex;
+
+  .hotel-card__reviews-text {
+    color: $black;
+    margin-left: 10px;
+  }
+}
+
+.hotel-card__rating-text {
+  margin-left: 5px;
+}
+
+.hotel-card__price-container {
+  border-left: 1px solid $grey-20;
+  display: flex;
+  flex-direction: column;
+  margin: 5px 5px 5px 0;
+  width: 30%;
+
+  .hotel-card__price {
+    align-items: center;
+    color: $green-50;
+    cursor: pointer;
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.view-details__button {
+  align-items: center;
+  border-radius: 1px;
+  border: none;
+  background-color: $green-50;
+  color: $white;
+  cursor: pointer;
+  display: flex;
+  height: 30px;
+  justify-content: center;
+  margin: 10px 20px;
+
+  &:hover {
+    background-color: $green-60;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}

@@ -2,77 +2,21 @@
 @import "globals";
 
 body {
-  font-family: "Bariol Bold", Helvetica, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
   background-color: $body-bg-color;
   height: 100%;
 }
 
-//header.css
-.navbar {
-  background-color: $primary-color;
-  height: 60px;
-  width: 100%;
-}
-
-.spacer {
-  display: inline-block;
-  vertical-align: 0.1rem;
-
-  &::after {
-    content: '.';
-    color: $light-text-color;
-    font-size: 36px;
-    margin: 0 30px;
-  }
-}
-
-.ui.menu {
-  display: flex;
-  justify-content: space-between;
-}
-
-.logo {
-  align-items: center;
-  display: flex;
-  width: 190px;
-
-  img {
-    width: 100%;
-  }
-}
-
-.item {
-  display: flex;
-  margin: 0 30px;
-}
-
-.nav-item {
-  box-sizing: border-box;
-  color: $white;
-  font-size: 1.2rem;
-  margin-left: 30px;
-  padding-top: 20px;
-  text-decoration: none;
-
-  &:hover {
-    color: $secondary-color;
-    border-bottom: 3px solid $secondary-color;
-  }
-
-  &.active {
-    color: $secondary-color;
-    border-bottom: 3px solid $secondary-color;
-  }
-}
-
-.avatar {
-  display: flex;
-  align-items: center;
-}
-
-//Main.css
-
 .main-container {
   padding: 10px 0;
-  margin: 0 100px;
+  margin: 0 300px;
 }
+
+//header.css
+@import "../partials/header.scss";
+
+//Main.css
+@import "../partials/hotel-card.scss";
+
+
+
