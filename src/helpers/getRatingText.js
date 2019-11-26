@@ -12,4 +12,4 @@ export default function(rating) {
   } else {
     return 'okay'
   }
-};
+}

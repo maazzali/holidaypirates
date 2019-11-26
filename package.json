@@ -4,7 +4,10 @@
   "description": "A frontend assessment test for our new pirates, which are willing to come on board.",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --config webpack/webpack.config.prod.js  --colors",
-    "start": "webpack-dev-server --open --config webpack/webpack.config.dev.js"
+    "start": "webpack-dev-server --open --config webpack/webpack.config.dev.js",
+    "unit": "karma start webpack/karma.js ",
+    "test": "npm run unit",
+    "lint": "eslint \"src/**/*.js\""
   },
   "repository": {
     "type": "git",
@@ -43,6 +46,13 @@
     "axios": "0.19.0",
     "core-js": "^3.3.3",
     "handlebars": "4.5.3",
-    "handlebars-loader": "1.7.1"
+    "handlebars-loader": "1.7.1",
+    "jasmine": "3.5.0",
+    "jasmine-core": "3.5.0",
+    "karma": "4.4.1",
+    "karma-chrome-launcher": "3.1.0",
+    "karma-coverage": "2.0.1",
+    "karma-jasmine": "2.0.1",
+    "karma-webpack": "4.0.2"
   }
 }

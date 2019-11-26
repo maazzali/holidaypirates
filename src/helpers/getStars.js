@@ -9,4 +9,4 @@ export default function(stars) {
     template += `<li class="hotel-card__star"><i class="material-icons">star</i></li>`;
   }
   return new Handlebars.SafeString(template);
-};
+}
