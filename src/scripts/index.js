@@ -1,45 +1,110 @@
-import '../styles/index.scss'
+import '../styles/index.scss';
 
-const axios = require('axios');
-const template = require('../partials/hotel-card.handlebars');
+import { getHotelsListing, getHotelReviews } from './services';
+
+const hotelsTemplate = require('../partials/hotel-card.handlebars');
+const reviewsTemplate = require('../partials/reviews.handlebars');
 const errorTemplate = require('../partials/error.handlebars');
 
-function registerEventHandlers() {
+
+/**
+ * Vanilla Debounce implementation
+ * @param {function} func - Function to be called when debounced.
+ * @param {number} wait - Timeout value in milliseconds.
+ */
+function debounce(func, wait = 100) {
+  let timeout;
+  return function(...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      func.apply(this, args);
+    }, wait);
+  };
+}
+
+/**
+ * Register event handlers for price and ratings
+ */
+function registerHandlersForFilters() {
   const ratingFilter = document.getElementById('ratings-filter');
-  ratingFilter.addEventListener("change", (val) => {
-    console.log('Value change');
+  ratingFilter.addEventListener("change", () => {
+    addHotelsListing(undefined, ratingFilter.value);
   });
 
   const priceFilter = document.getElementById('price-filter');
   const priceFilterOutput = document.getElementById("price-filter-text");
-  priceFilterOutput.innerHTML = `$ ${priceFilter.value}`; // Display the default slider value
-  priceFilter.addEventListener("input", (val) => {
-    console.log('here');
-    priceFilterOutput.innerHTML = `$ ${priceFilter.value}`;
+  const debounced = debounce(function () {
+    addHotelsListing(priceFilter.value);
+  }, 500);
+  priceFilter.addEventListener("input", () => {
+    priceFilterOutput.innerHTML = `$${priceFilter.value}`;
+  });
+  priceFilter.addEventListener("input", debounced);
+  priceFilterOutput.innerHTML = `$${priceFilter.value}`; // Display the default slider value
+}
+
+/**
+ * Get a list of hotels available.
+ * @param {number} maxPrice - Maximum offer price for hotels.
+ * @param {number} minStars - Minimum stars for hotels.
+ */
+function addHotelsListing(maxPrice, minStars) {
+  const contentElem = document.getElementById("content");
+  contentElem.innerHTML = '<div class="loader__container"><div class="loader"></div></div>';
+  const count = 2;
+  getHotelsListing(maxPrice, minStars).then(function (response) {
+    let hotels = response.data;
+    // API doesn't consider multiple query params at a time.
+    if (hotels.length > count) {
+      hotels = hotels.slice(0, count);
+    }
+    const templateData = hotelsTemplate({"hotels": hotels});
+    contentElem.innerHTML = templateData;
+  }, function(error) {
+    const data = errorTemplate({"error": error.response});
+    contentElem.innerHTML = data;
+  })
+}
+
+/**
+ * Register handler for event delegation
+ */
+function registerHandlersForDetails() {
+  document.getElementById('content').addEventListener('click', (evt) => {
+    if (evt.target.id || evt.target.parentElement.id) {
+      const target = evt.target.id ? evt.target : evt.target.parentElement;
+      console.log(target);
+      const detailsElem = document.getElementById('detail-' + target.id);
+      if (detailsElem && target.className === 'view-details__button' && detailsElem.style.maxHeight !== '600px' ) {
+        detailsElem.style.maxHeight = "600px";
+        appendReviewsInDetail(target.id);
+      } else if (detailsElem && target.className === 'details__close-button'){
+        detailsElem.style.maxHeight = "0px";
+      }
+    }
   });
 }
 
+/**
+ * Append list of reviews in hotel details
+ * @param {number} id - Hotel id for fetching reviews.
+ */
+function appendReviewsInDetail(id) {
+  const reviewListElem = document.getElementById('detail-' + id).querySelector(".details__reviews-list");
+  reviewListElem.innerHTML = '<div class="loader__container"><div class="loader"></div></div>';
+  getHotelReviews(id).then((response) => {
+    const templateData = reviewsTemplate({reviews: response.data});
+    reviewListElem.innerHTML = templateData;
+  }, () => {
+
+  })
+}
+
+
 window.onload = function() {
-
-  registerEventHandlers();
-  const count = 25;
-  const url = `http://fake-hotel-api.herokuapp.com/api/hotels?count=${count}`;
-  axios.get(url)
-    .then(function (response) {
-      // handle success
-      console.log('Success: ', response);
-      const templateData = template({"hotels": response.data});
-      document.getElementById("content").innerHTML += templateData;
-
-      registerEventHandlers();
-      document.getElementById('view-details').addEventListener('click', (evt) => {
-        console.log('Button CLicked', evt);
-      });
-    }, function(error) {
-      const data = errorTemplate({"error": error.response});
-      document.getElementById("content").innerHTML = data;
-    })
-
-
-
+  registerHandlersForFilters();
+  registerHandlersForDetails();
+  const ratings  = document.getElementById('ratings-filter').value;
+  // Default hotels listing
+  addHotelsListing(undefined, ratings);
 };

@@ -1,5 +1,5 @@
 {{#each hotels}}
-  <article class="col-md-6 hotel-card">
+  <article class="hotel-card">
     <div class="hotel-card__wrapper">
       <div class="hotel-card__image">
         <div class="hotel-image">
@@ -21,29 +21,33 @@
             <i class="material-icons">location_on</i>
             <p class="location-text">{{[../helpers/getLocation] city country}}</p>
           </div>
-          <span class="location__arrow-down"><i class="material-icons">keyboard_arrow_down</i></span>
         </div>
         <div class="hotel-card__reviews-container">
           <div class="hotel-card__reviews">
             <div class="hotel-card__rating-box">
               <div class="hotel-card__rating">{{[../helpers/getFixedNumber] rating}}</div>
             </div>
-            <p class="hotel-card__rating-text">Very Good</p>
             <a href="#" class="hotel-card__reviews-text">See all Reviews</a>
           </div>
-          <span class="location__arrow-down"><i class="material-icons">keyboard_arrow_down</i></span>
+          <span class="location__arrow-down"><i class="material-icons">keyboard_arrow_right</i></span>
         </div>
       </div>
       <div class="hotel-card__price-container">
         <div class="hotel-card__price">
           <h1>$ {{price}}</h1>
         </div>
-        <button id="view-details" class="view-details__button">
-          View Details
+        <button id="{{id}}" class="view-details__button">
+          <span class="view-details__button--text">View Details</span>
           <i class="material-icons">keyboard_arrow_down</i>
         </button>
       </div>
     </div>
   </article>
   {{> details this}}
+{{else}}
+  <div class="no-hotels">
+    <div class="no-hotels__text">
+      No hotels found. Please update search criteria.
+    </div>
+  </div>
 {{/each}}

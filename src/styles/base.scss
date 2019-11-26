@@ -1,0 +1,66 @@
+@import "colors";
+
+// Base colors
+$body-bg-color: $white-20;
+$dark-border-color: $grey-20;
+
+// Font settings
+$base-font-size: 18px;
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-bold: 600;
+
+@font-face {
+  font-family: Bariol Bold;
+  src: url(fonts/bariol_bold-webfont.woff2);
+}
+
+@font-face {
+  font-family: Bariol Regular;
+  src: url(fonts/bariol_regular-webfont.woff2);
+}
+
+$mobile-max-width: "max-width : 600px";
+$tablet-max-width: "max-width : 1200px";
+$desktop-min-width: "min-width : 1201px";
+
+@mixin desktop {
+  @media only screen and (#{$desktop-min-width}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media only screen and (#{$tablet-max-width}) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media only screen and (#{$mobile-max-width}) {
+    @content;
+  }
+}
+
+@mixin tablet-desktop {
+  @media only screen and (#{$tablet-max-width}), only screen and (#{$desktop-min-width}) {
+    @content;
+  }
+}
+
+@mixin icon-size($size) {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+
+  > img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+body {
+  background-color: $body-bg-color;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  width: 100%;
+}

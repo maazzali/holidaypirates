@@ -2,10 +2,14 @@ $verticalSpace: 20px;
 
 .details {
   background-color: $white;
-  height: 400px;
+  max-height: 0px;
   margin: 10px 0;
-  padding: $verticalSpace;
-  transition: all 0.5s;
+  overflow: hidden;
+  transition: max-height 0.7s;
+
+  .details__wrapper {
+    padding: $verticalSpace;
+  }
 
   .details__heading-container {
     border-bottom: 1px solid $grey-20;
@@ -21,13 +25,30 @@ $verticalSpace: 20px;
   }
 
   .details__reviews-list {
+    background-color: $white-10;
+    height: 180px;
     overflow-y: scroll;
-    padding-bottom: $verticalSpace;
+
+    .loader__container {
+      height: 100%;
+    }
   }
 
   .details__reviews-heading {
     padding-bottom: $verticalSpace;
     border-bottom: 1px solid $grey-20;
+  }
+
+  .no-reviews {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+
+    .no-reviews__text {
+      color: $grey-50;
+      font-weight: $font-weight-bold;
+    }
   }
 
   .review {
@@ -42,7 +63,13 @@ $verticalSpace: 20px;
 
       i {
         font-size: 56px;
-        color: $green-50;
+
+        &.satisfied {
+          color: $green-50;
+        }
+        &.dissatisfied {
+          color: $secondary-color;
+        }
       }
     }
 
@@ -50,12 +77,36 @@ $verticalSpace: 20px;
       padding: 10px;
 
       .reviewer__name {
-        font-weight: 600;
+        font-weight: $font-weight-bold;
       }
 
       .reviewer__comment {
         padding-top: 10px;
       }
+    }
+  }
+
+  .details__close-button {
+    -webkit-appearance: none;
+    align-items: center;
+    background-color: $white;
+    border: 1px solid $black;
+    box-shadow: none;
+    color: $black;
+    cursor: pointer;
+    display: flex;
+    float: right;
+    height: 30px;
+    justify-content: center;
+    margin: 10px 20px;
+
+    &:hover {
+      background-color: $grey-30;
+      color: $white;
+    }
+
+    &:focus {
+      outline: none;
     }
   }
 }

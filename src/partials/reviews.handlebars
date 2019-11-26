@@ -1,0 +1,19 @@
+{{#each reviews}}
+  <li class="review">
+    <div class="review__sentiment">
+      {{#if positive}}
+        <i class="satisfied material-icons">sentiment_very_satisfied</i>
+      {{else}}
+        <i class="dissatisfied material-icons">sentiment_neutral</i>
+      {{/if}}
+    </div>
+    <div class="review__detail">
+      <h5 class="reviewer__name">{{name}}</h5>
+      <p class="reviewer__comment">{{comment}}</p>
+    </div>
+  </li>
+{{else}}
+  <div class="no-reviews">
+    <div class="no-reviews__text">No reviews</div>
+  </div>
+{{/each}}
