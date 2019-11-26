@@ -16,16 +16,38 @@
 }
 
 .hotel-card__image {
+  background-image: url('../assets/placeholder.svg');
+  background-position: center;
+  flex-basis: 30%;
+  overflow: hidden;
+  position: relative;
   text-align: center;
-  width: 30%;
-}
+  @include icon-size(100%);
+  @include tablet {
+    flex-basis: 40%;
+  }
 
-.hotel-image {
-  max-width: 100%;
-  max-height: 100%;
+  .image {
+    display: none;
 
-  img {
-    width: 100%;
+    &.active {
+      display: block;
+    }
+  }
+
+  .image__arrow {
+    background-color: $grey-10;
+    cursor: pointer;
+    opacity: 0.5;
+    position: absolute;
+  }
+
+  .image__arrow--left {
+    left: 0;
+  }
+
+  .image__arrow--right {
+    right: 0;
   }
 }
 
@@ -36,7 +58,7 @@
   overflow: hidden;
   padding: 10px 20px;
   position: relative;
-  width: 50%;
+  flex-basis: 50%;
 
   .hotel-card__name-container {
     padding: 5px 0;
@@ -83,7 +105,6 @@
   cursor: pointer;
   display: flex;
   padding: 10px 5px;
-
 }
 
 .hotel-card__location {
@@ -102,16 +123,10 @@
   justify-content: space-between;
   padding: 10px 5px;
 
-}
-
-.hotel-card__rating-box {
-  background-color: $green-50;
-  border-radius: 5px;
-  display: inline-block;
-
-  .hotel-card__rating {
-    color: $white;
-    padding: 5px 10px;
+  .reviews__arrow-right {
+    @include mobile {
+      display: none;
+    }
   }
 }
 
@@ -119,13 +134,46 @@
   align-items: center;
   display: flex;
 
+  .hotel-card__rating-box {
+    border-radius: 5px;
+    display: inline-block;
+
+    .hotel-card__rating {
+      color: $white;
+      padding: 5px 10px;
+    }
+  }
+
   .hotel-card__reviews-text {
     color: $black;
     margin-left: 10px;
   }
+
+  &.excellent, &.good {
+    .hotel-card__rating-box {
+      background-color: $green-50;
+    }
+
+    .hotel-card__rating-text {
+      color: $green-50;
+    }
+  }
+
+  &.fair, &.okay {
+    .hotel-card__rating-box {
+      background-color: $secondary-color;
+    }
+
+    .hotel-card__rating-text {
+      color: $secondary-color;
+    }
+  }
 }
 
 .hotel-card__rating-text {
+  color: $green-50;
+  font-weight: $font-weight-bold;
+  text-transform: capitalize;
   margin-left: 5px;
 }
 
@@ -134,7 +182,10 @@
   display: flex;
   flex-direction: column;
   margin: 5px 5px 5px 0;
-  width: 20%;
+  flex-basis: 20%;
+  @include mobile {
+    border: none;
+  }
 
   .hotel-card__price {
     align-items: center;
@@ -173,9 +224,6 @@
   .view-details__button--text {
     @include tablet {
       display: block;
-    }
-    @include mobile {
-      display: none;
     }
   }
 

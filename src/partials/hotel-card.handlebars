@@ -2,9 +2,16 @@
   <article class="hotel-card">
     <div class="hotel-card__wrapper">
       <div class="hotel-card__image">
-        <div class="hotel-image">
-          <img src="{{images.[0]}}" alt="Hotel image" onError="this.onerror=null;this.src='{{images.[1]}}';"/>
-        </div>
+        <i class="material-icons image__arrow image__arrow--left">keyboard_arrow_left</i>
+        <i class="material-icons image__arrow image__arrow--right">keyboard_arrow_right</i>
+        {{#each images}}
+          {{#if @first}}
+            <img src="{{this}}" class="image active" alt="{{name}}"/>
+          {{/if}}
+          {{#unless @first}}
+            <img src="{{this}}" class="image" alt="{{name}}"/>
+          {{/unless}}
+        {{/each}}
       </div>
       <div class="hotel-card__detail">
         <div class="hotel-card__name-container">
@@ -23,13 +30,14 @@
           </div>
         </div>
         <div class="hotel-card__reviews-container">
-          <div class="hotel-card__reviews">
+          <div class="hotel-card__reviews {{[../helpers/getRatingText] rating}}">
             <div class="hotel-card__rating-box">
               <div class="hotel-card__rating">{{[../helpers/getFixedNumber] rating}}</div>
             </div>
+            <div class="hotel-card__rating-text">{{[../helpers/getRatingText] rating}}</div>
             <a href="#" class="hotel-card__reviews-text">See all Reviews</a>
           </div>
-          <span class="location__arrow-down"><i class="material-icons">keyboard_arrow_right</i></span>
+          <span class="reviews__arrow-right"><i class="material-icons">keyboard_arrow_right</i></span>
         </div>
       </div>
       <div class="hotel-card__price-container">
