@@ -1,4 +1,4 @@
-import * as getFixedNumber from './getFixedNumber';
+import getFixedNumber from './getFixedNumber';
 
 describe('Get fixed number helper', function() {
 

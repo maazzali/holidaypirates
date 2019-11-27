@@ -3,5 +3,5 @@
  * @param {number} num - Decimal number to be converted.
  */
 export default function(num) {
-  return num.toFixed(1);
+  return parseFloat(num.toFixed(1));
 }
