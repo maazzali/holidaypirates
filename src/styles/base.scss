@@ -42,12 +42,6 @@ $desktop-min-width: "min-width : 1201px";
   }
 }
 
-@mixin tablet-desktop {
-  @media only screen and (#{$tablet-max-width}), only screen and (#{$desktop-min-width}) {
-    @content;
-  }
-}
-
 @mixin icon-size($size) {
   align-items: center;
   display: flex;

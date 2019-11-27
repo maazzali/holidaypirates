@@ -4,10 +4,12 @@
   "description": "A frontend assessment test for our new pirates, which are willing to come on board.",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --config webpack/webpack.config.prod.js  --colors",
-    "start": "webpack-dev-server --open --config webpack/webpack.config.dev.js",
+    "start-client": "webpack-dev-server --open --config webpack/webpack.config.dev.js",
+    "start": "node server.js",
     "unit": "karma start webpack/karma.js ",
     "test": "npm run unit",
-    "lint": "eslint \"src/**/*.js\""
+    "lint": "eslint \"src/**/*.js\"",
+    "postinstall": "cross-env NODE_ENV=production webpack --config webpack/webpack.config.prod.js  --colors"
   },
   "repository": {
     "type": "git",

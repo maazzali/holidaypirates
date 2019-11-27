@@ -51,7 +51,7 @@ function registerHandlersForFilters() {
 function addHotelsListing(maxPrice, minStars) {
   const contentElem = document.getElementById("content");
   contentElem.innerHTML = '<div class="loader__container"><div class="loader"></div></div>';
-  const count = 25;
+  const count = 10;
   getHotelsListing(maxPrice, minStars).then(function (response) {
     let hotels = response.data;
     // API doesn't consider multiple query params at a time.
