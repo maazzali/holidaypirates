@@ -49,7 +49,7 @@
     "core-js": "^3.3.3",
     "express": "4.16.0",
     "handlebars": "4.5.3",
-    "handlebars-loader": "1.7.1",
+    "handlebars-loader": "1.7.3",
     "jasmine": "3.5.0",
     "jasmine-core": "3.5.0",
     "karma": "4.4.1",
